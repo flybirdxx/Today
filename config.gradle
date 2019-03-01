@@ -18,8 +18,9 @@ ext {
             rxlifecycleSdkVersion   : "1.0",
             rxlifecycle2SdkVersion  : "2.2.2",
             espressoSdkVersion      : "3.0.1",
-            canarySdkVersion        : "1.5.4",
-            armsSdkVersion          : "2.5.0"
+            canarySdkVersion        : "1.6.3",
+            armsSdkVersion          : "2.5.0",
+            smartrefreshSdkVersion  : "1.1.0-alpha-20"
     ]
 
     dependencies = [
@@ -55,6 +56,8 @@ ext {
             "paginate"                 : "com.github.markomilos:paginate:0.5.1",
             "vlayout"                  : "com.alibaba.android:vlayout:1.1.0@aar",
             "autosize"                 : "me.jessyan:autosize:1.1.1",
+            "smartrefresh"             : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshSdkVersion"]}",
+            "smartrefresh-header"      : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshSdkVersion"]}",
 
             //rx1
             "rxandroid"                : "io.reactivex:rxandroid:1.2.1",
@@ -96,7 +99,8 @@ ext {
             "lifecyclemodel"           : "me.jessyan:lifecyclemodel:1.0.1",
             "imageloader"              : "me.jessyan:arms-imageloader-glide:${version["armsSdkVersion"]}",
             "autolayout"               : "me.jessyan:arms-autolayout:${version["armsSdkVersion"]}",
-
+            "androidutilcode"          : "com.blankj:utilcode:1.23.5",
+            "adapterHelper"            : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45",
             //test
             "junit"                    : "junit:junit:4.12",
             "androidJUnitRunner"       : "android.support.test.runner.AndroidJUnitRunner",

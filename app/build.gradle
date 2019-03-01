@@ -16,12 +16,18 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
     buildTypes {
-        debug{
+        debug {
             //这两个变量是自定义的, 自己也可以自定义其他字段, 这些字段会默认生成到 **BuildConfig** 类中, 在 **App** 中可以根据这些字段执行一些操作
-            buildConfigField "boolean","LOG_DEBUG","true"
-            buildConfigField "boolean","USE_CANARY","true"
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "USE_CANARY", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
@@ -33,24 +39,39 @@ android {
     }
 }
 
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation rootProject.ext.dependencies["junit"]
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation(rootProject.ext.dependencies["cardview-v7"]) {
+        exclude module: 'support-annotations'
+    }
     implementation rootProject.ext.dependencies["autolayout"]
-    implementation rootProject.ext.dependencies["butterknife"]
-    //butterknife插件
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-    implementation rootProject.ext.dependencies["dagger2"]
-    //dagger插件
+    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'support-annotations'
+    }
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["arms"]
     implementation rootProject.ext.dependencies["imageloader"]
     implementation rootProject.ext.dependencies["autolayout"]
     implementation rootProject.ext.dependencies["timber"]
-    implementation rootProject.ext.dependencies["canary-debug"]
-    implementation rootProject.ext.dependencies["canary-release"]
+    debugImplementation rootProject.ext.dependencies["canary-debug"]
+    releaseImplementation rootProject.ext.dependencies["canary-release"]
+    testImplementation rootProject.ext.dependencies["canary-release"]
+    //Tencent Qmui框架
+    implementation 'com.qmuiteam:qmui:1.2.0'
+    implementation 'com.qmuiteam:arch:0.3.1'
+    implementation rootProject.ext.dependencies["smartrefresh"]
+    implementation rootProject.ext.dependencies["smartrefresh-header"]
+    //工具类
+    implementation rootProject.ext.dependencies["androidutilcode"]
+    implementation rootProject.ext.dependencies["retrofit-url-manager"]
+    implementation rootProject.ext.dependencies["progressmanager"]
+
+    implementation rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
 }
