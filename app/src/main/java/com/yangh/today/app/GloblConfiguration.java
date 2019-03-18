@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.Utils;
+import com.gjiazhe.panoramaimageview.GyroscopeObserver;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.module.ClientModule;
 import com.jess.arms.di.module.GlobalConfigModule;
@@ -43,6 +44,7 @@ import timber.log.Timber;
  */
 public class GloblConfiguration implements ConfigModule {
     public static String sDomain = APi.APP_DOMAIN;
+
     @Override
     public void applyOptions(Context context, GlobalConfigModule.Builder builder) {
         if (!BuildConfig.LOG_DEBUG) {
@@ -56,12 +58,12 @@ public class GloblConfiguration implements ConfigModule {
                 //以下方式是 Arms 框架自带的切换 BaseUrl 的方式, 在整个 App 生命周期内只能切换一次, 若需要无限次的切换 BaseUrl, 以及各种复杂的应用场景还是需要使用 RetrofitUrlManager 框架
                 //以下代码只是配置, 还要使用 Okhttp (AppComponent中提供) 请求服务器获取到正确的 BaseUrl 后赋值给 GlobalConfiguration.sDomain
                 //切记整个过程必须在第一次调用 Retrofit 接口之前完成, 如果已经调用过 Retrofit 接口, 此种方式将不能切换 BaseUrl
-                .baseurl(new BaseUrl() {
-                    @Override
-                    public HttpUrl url() {
-                        return HttpUrl.parse(sDomain);
-                    }
-                })
+//                .baseurl(new BaseUrl() {
+//                    @Override
+//                    public HttpUrl url() {
+//                        return HttpUrl.parse(sDomain);
+//                    }
+//                })
 
                 //可根据当前项目的情况以及环境为框架某些部件提供自定义的缓存策略, 具有强大的扩展性
                 //                .cacheFactory(new Cache.Factory() {
@@ -122,6 +124,8 @@ public class GloblConfiguration implements ConfigModule {
                     //使用一行代码监听 Retrofit／Okhttp 上传下载进度监听,以及 Glide 加载进度监听
                     ProgressManager.getInstance().with(okhttpBuilder);
                     //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl.
+                    //                    RetrofitUrlManager.getInstance().with(okhttpBuilder);
+                    RetrofitUrlManager.getInstance().setDebug(true);
                     RetrofitUrlManager.getInstance().with(okhttpBuilder);
                 })
                 .rxCacheConfiguration((context1, cacheBuilder) -> {
@@ -145,21 +149,7 @@ public class GloblConfiguration implements ConfigModule {
 
     @Override
     public void injectFragmentLifecycle(Context context, List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
-        lifecycles.add(new FragmentManager.FragmentLifecycleCallbacks() {
-            @Override
-            public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @Nullable Bundle savedInstanceState) {
-                super.onFragmentCreated(fm, f, savedInstanceState);
-            }
 
-            @Override
-            public void onFragmentDestroyed(@NonNull FragmentManager fm, @NonNull Fragment f) {
-                ((RefWatcher) ArmsUtils
-                        .obtainAppComponentFromContext(f.getActivity())
-                        .extras()
-                        .get(IntelligentCache.KEY_KEEP + RefWatcher.class.getName()))
-                        .watch(f);
-            }
-        });
     }
 
 

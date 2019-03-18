@@ -19,7 +19,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -50,9 +50,11 @@ dependencies {
         exclude module: 'support-annotations'
     }
     implementation rootProject.ext.dependencies["autolayout"]
+
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
         exclude module: 'support-annotations'
     }
+
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["arms"]
     implementation rootProject.ext.dependencies["imageloader"]
@@ -73,5 +75,17 @@ dependencies {
 
     implementation rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    implementation rootProject.ext.dependencies["adapterHelper"]
+
+    //一个圆角的imageview
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
+//    implementation "com.github.chrisbanes:PhotoView:2.3.0"
+    implementation "com.gjiazhe:PanoramaImageView:1.0"
+    implementation 'com.alexvasilkov:gesture-views:2.5.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+//    implementation 'com.gjiazhe:PanoramaImageView:1.0'
+    //定位工具类
+//    implementation 'com.github.zackratos.rxlocation:rxlocation:1.0.0'
 
 }

@@ -28,8 +28,6 @@
         <!-- 配置app自己的theme -->
         <item name="app_primary_color">?attr/qmui_config_color_blue</item>
         <item name="app_content_bg_color">@color/qmui_config_color_white</item>
-
-
     </style>
 
     <style name="QDTextAppearanceListItemSmall">
@@ -54,5 +52,47 @@
         <item name="qmui_topbar_text_btn_color_state_list">@color/s_topbar_btn_color</item>
         <item name="qmui_topbar_height">48dp</item>
         <item name="qmui_topbar_image_btn_height">48dp</item>
+    </style>
+
+    //pop
+
+    <style name="custom_popup">
+        <item name="qmui_popup_bg">@drawable/qmui_popup_bg</item>
+        <item name="qmui_popup_arrow_down">@drawable/qmui_popup_arrow_down</item>
+        <item name="qmui_popup_arrow_up">@drawable/qmui_popup_arrow_up</item>
+        <item name="qmui_popup_arrow_up_margin_top">6dp</item>
+        <item name="qmui_popup_arrow_down_margin_bottom">6dp</item>
+    </style>
+
+    <style name="Bottom_dialog" parent="Theme.AppCompat.Light.Dialog">
+        <!--是否有边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--对否悬浮在Activity上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--标题-->
+        <item name="windowNoTitle">true</item>
+        <!--阴影-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="bottom_dialog_anim">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+
+    </style>
+
+    <style name="dialog_progress_doalog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 </resources>

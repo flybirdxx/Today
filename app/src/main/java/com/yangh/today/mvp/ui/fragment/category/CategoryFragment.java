@@ -3,12 +3,15 @@ package com.yangh.today.mvp.ui.fragment.category;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ToastUtils;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.di.component.AppComponent;
@@ -21,12 +24,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yangh.today.R;
-import com.yangh.today.app.LinearLayoutManagerWrapper;
+import com.yangh.today.app.AppLifecyclesImpl;
+import com.yangh.today.app.utils.IntentUtils;
 import com.yangh.today.di.component.DaggerCategoryComponent;
 import com.yangh.today.di.module.CategoryModule;
 import com.yangh.today.mvp.contract.CategoryContract;
 import com.yangh.today.mvp.model.entity.GankEntity;
 import com.yangh.today.mvp.presenter.CategoryPresenter;
+import com.yangh.today.mvp.weight.DivideItemDecoration;
 
 import java.util.List;
 
@@ -67,6 +72,7 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
 
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {
+        rxPermissions = new RxPermissions(this);
         DaggerCategoryComponent.builder()
                 .appComponent(appComponent)
                 .categoryModule(new CategoryModule(this))
@@ -83,9 +89,13 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
     public void initData(@Nullable Bundle savedInstanceState) {
         type = getArguments().getString("category");
         mPresenter.requestData(type, true);
+        refreshLayout.autoRefresh();
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()).setEnableLastTime(true));
         refreshLayout.setOnRefreshLoadMoreListener(this);
-        ArmsUtils.configRecyclerView(recycle2News, new LinearLayoutManagerWrapper(getActivity()));
+        ArmsUtils.configRecyclerView(recycle2News, new LinearLayoutManager(getActivity()));
+//        recycle2News.addItemDecoration(new DivideItemDecoration());
+//        recycle2News.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL));
+        recycle2News.setHasFixedSize(true);
         recycle2News.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
 
@@ -145,10 +155,14 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
 
 
     @Override
-    public void onItemClick(View view, int viewType, Object data, int position) {
-        GankEntity.ResultsBean resultsBean = (GankEntity.ResultsBean) data;
-        ARouter.getInstance().build(MAIN_DETAIL)
-                .withSerializable(EXTRA_DETAIL, resultsBean)
-                .navigation();
+    public void onItemClick(View view, int viewType, Object o, int position) {
+        ToastUtils.showShort(position);
+        GankEntity.ResultsBean resultsBean = data.get(position);
+        IntentUtils.startToWebAactivity(AppLifecyclesImpl.getInstance(),
+                type, resultsBean.getDesc(), resultsBean.getUrl());
+        ToastUtils.showLong("type---"+resultsBean.getDesc()+"url---"+resultsBean.getUrl());
+//        ARouter.getInstance().build(MAIN_DETAIL)
+//                .withSerializable(EXTRA_DETAIL, data.get(position))
+//                .navigation();
     }
 }

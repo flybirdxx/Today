@@ -53,4 +53,10 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        contentViewPage = null;
+        tabLayout = null;
+    }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/type_gank"
+        android:icon="@drawable/ic_action_gank"
+        android:title="干货集中营" />
+    <item
+        android:id="@+id/type_wan_android"
+        android:icon="@drawable/ic_action_wan"
+        android:title="WanAndroid" />
+    <item
+        android:id="@+id/type_weather"
+        android:icon="@drawable/ic_action_weather"
+        android:title="天气" />
+</menu>

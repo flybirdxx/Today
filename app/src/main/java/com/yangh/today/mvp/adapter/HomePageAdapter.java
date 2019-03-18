@@ -37,4 +37,5 @@ public class HomePageAdapter extends FragmentStatePagerAdapter {
         fragmentList.add(fragment);
     }
 
+
 }

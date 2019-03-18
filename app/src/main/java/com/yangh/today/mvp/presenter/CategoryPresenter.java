@@ -1,10 +1,13 @@
 package com.yangh.today.mvp.presenter;
 
+import android.Manifest;
 import android.app.Application;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v7.widget.RecyclerView;
 
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.http.imageloader.ImageLoader;
@@ -56,7 +59,11 @@ public class CategoryPresenter extends BasePresenter<CategoryContract.Model, Cat
     }
 
 
+
     public void requestData(String type, boolean pullToRefresh) {
+
+
+
         if (pullToRefresh && isFirst) {
             lastUserId = 1;
             isFirst = false;

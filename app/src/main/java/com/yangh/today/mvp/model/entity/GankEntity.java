@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class GankEntity implements Serializable {
 
+    public static int TXT = 1;
+    public static int IMG = 2;
+
     public boolean error;
     public List<ResultsBean> results;
 

@@ -11,12 +11,10 @@ import io.reactivex.Observable;
  */
 public interface DetailContract {
     interface View extends IView {
-        void setData(String url);
-
         void onFavoriteChange(boolean isFavorite);
     }
 
     interface Model extends IModel {
-        Observable<GankEntity> getGirl();
+//        Observable<GankEntity> getGirl();
     }
 }

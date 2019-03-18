@@ -4,12 +4,8 @@ import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 import com.yangh.today.mvp.contract.DetailContract;
-import com.yangh.today.mvp.model.entity.GankEntity;
-import com.yangh.today.mvp.model.service.CommonService;
 
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
 
 /**
  * Created by yangH on 2019/3/1.
@@ -21,8 +17,8 @@ public class DetailModel extends BaseModel implements DetailContract.Model {
         super(repositoryManager);
     }
 
-    @Override
-    public Observable<GankEntity> getGirl() {
-        return mRepositoryManager.obtainRetrofitService(CommonService.class).getGirl();
-    }
+//    @Override
+//    public Observable<GankEntity> getGirl() {
+//        return mRepositoryManager.obtainRetrofitService(GankService.class).getGirl();
+//    }
 }

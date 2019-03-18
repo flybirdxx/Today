@@ -17,4 +17,7 @@
     <color name="bar_divider">#D4D6D8</color>
     <color name="tab_panel_bg">#ffffff</color>
     <color name="tab_panel_divider">@color/bar_divider</color>
+
+    <color name="webview_progress_bg_color">#ffffff</color>
+    <color name="webview_progress_color">#31BDF3</color>
 </resources>

@@ -19,6 +19,10 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            url 'https://dl.google.com/dl/android/maven2/'
+            // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
+        }
     }
 }
 

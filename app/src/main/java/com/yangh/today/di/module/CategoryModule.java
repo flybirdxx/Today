@@ -8,6 +8,7 @@ import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.di.scope.FragmentScope;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yangh.today.mvp.adapter.CategoryAdapter;
+import com.yangh.today.mvp.adapter.MyAdapter;
 import com.yangh.today.mvp.contract.CategoryContract;
 import com.yangh.today.mvp.model.CategoryModel;
 import com.yangh.today.mvp.model.entity.GankEntity;
@@ -63,7 +64,7 @@ public class CategoryModule {
     @ActivityScope
     @Provides
     DefaultAdapter<GankEntity.ResultsBean> provideGankAdapter(CategoryContract.View view, List<GankEntity.ResultsBean> list) {
-        return new CategoryAdapter(list);
+        return new MyAdapter(list);
     }
 
 }

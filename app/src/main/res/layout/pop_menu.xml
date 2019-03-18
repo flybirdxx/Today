@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:background="@drawable/popup_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/copy"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/ic_content_cut_black_24dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="复制链接"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/bar_divider" />
+
+    <TextView
+        android:id="@+id/open"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/ic_public_black_24dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="在浏览器打开"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/bar_divider" />
+
+    <TextView
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/ic_cloud_black_24dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="分享链接"
+        android:textSize="16sp" />
+</LinearLayout>
